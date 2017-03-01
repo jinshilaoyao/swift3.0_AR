@@ -22,15 +22,15 @@ class YYMapViewController: UIViewController {
         super.viewDidLoad()
         mapView.userTrackingMode = .followWithHeading
         mapView.delegate = self
-        setupTargetLocations()
+//        setupTargetLocations()
         setupLocationManager()
     }
     
     //MARK: - setup
-    
     func setupTargetLocations() {
-        let wolf = YYARItem(itemDescription: "wolf", location: CLLocation(latitude: 39.950293042177186, longitude: 116.3371299213684), itemNode: nil)
-        targets.append(wolf)
+        let wolf1 = YYARItem(itemDescription: "wolf1", location: CLLocation(latitude: 39.955593042207086, longitude: 116.3371299213584
+), itemNode: nil)
+        targets.append(wolf1)
         
 //        let dragon = YYARItem(itemDescription: "dragon", location: CLLocation(latitude: 39.950293042207186, longitude: 116.3371299213684), itemNode: nil)
 //        targets.append(dragon)
@@ -46,16 +46,46 @@ class YYMapViewController: UIViewController {
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locatinoManager.requestWhenInUseAuthorization()
         }
+        locatinoManager.startUpdatingLocation()
+        locatinoManager.delegate = self
+    }
+    
+    
+    @IBAction func searchMonster() {
+        
+        targets.removeAll()
+        
+        let wolfLocation = CLLocation(latitude: self.userLocation!.coordinate.latitude + 0.00005, longitude: self.userLocation!.coordinate.longitude)
+        
+        let wolf = YYARItem(itemDescription: "wolf", location: wolfLocation, itemNode: nil)
+        targets.append(wolf)
+        
+        for item in targets {
+            let annation = YYMapAnnotation(location: item.location.coordinate, item: item)
+            mapView.addAnnotation(annation)
+        }
+    }
+    
+}
+extension YYMapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let location = locations.first else {
+            return
+        }
+        
+        self.userLocation = location
     }
 }
+
 extension YYMapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        self.userLocation = userLocation.location
-        
-    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let coordinate = view.annotation!.coordinate
+        
+        if (view.annotation?.title)! == "My Location" {
+            return
+        }
         
         if let userCorrdinate = self.userLocation {
             print(userCorrdinate.distance(from: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)))

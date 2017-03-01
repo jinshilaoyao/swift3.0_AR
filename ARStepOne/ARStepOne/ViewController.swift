@@ -11,6 +11,8 @@ import AVFoundation
 import SceneKit
 import CoreLocation
 
+let NotifyChatMsgRecv = NSNotification.Name(rawValue:"notifyChatMsgRecv")
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var sceneView: SCNView!
@@ -41,6 +43,7 @@ class ViewController: UIViewController {
         self.locationManager.delegate = self
         //2
         self.locationManager.startUpdatingHeading()
+        self.locationManager.startUpdatingLocation()
         
         //3
         sceneView.scene = scene
@@ -48,8 +51,23 @@ class ViewController: UIViewController {
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
         scene.rootNode.addChildNode(cameraNode)
         setupTarget()
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(receiveUserLocation), name: NotifyChatMsgRecv, object: nil)
     }
-
+    
+    @IBAction func goBack() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+//    func receiveUserLocation(notification: Notification) {
+//        guard let location = notification.object as? CLLocation else {
+//            return
+//        }
+//        
+//        self.userLocation = location
+//        
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -142,7 +160,7 @@ class ViewController: UIViewController {
         
         
         
-        let distance = userLocation.distance(from: target.location) * 20
+        let distance = userLocation.distance(from: target.location) * 0.075
         print(distance)
         if let node = target.itemNode {
             //5
