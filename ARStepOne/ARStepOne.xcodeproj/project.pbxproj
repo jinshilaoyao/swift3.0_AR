@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB0593D11E67C0D00019B844 /* Fireball.scnp in Resources */ = {isa = PBXBuildFile; fileRef = EB0593D01E67C0D00019B844 /* Fireball.scnp */; };
 		EB7FFE411E65498700B8A3B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7FFE401E65498700B8A3B3 /* AppDelegate.swift */; };
 		EB7FFE431E65498700B8A3B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7FFE421E65498700B8A3B3 /* ViewController.swift */; };
 		EB7FFE461E65498700B8A3B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7FFE441E65498700B8A3B3 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB0593D01E67C0D00019B844 /* Fireball.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Fireball.scnp; sourceTree = "<group>"; };
 		EB7FFE3D1E65498700B8A3B3 /* ARStepOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARStepOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7FFE401E65498700B8A3B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB7FFE421E65498700B8A3B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				EB7FFE721E654F3900B8A3B3 /* YYMapAnnotation.swift */,
 				EB7FFE441E65498700B8A3B3 /* Main.storyboard */,
 				EB7FFE471E65498700B8A3B3 /* Assets.xcassets */,
+				EB0593D01E67C0D00019B844 /* Fireball.scnp */,
 				EB7FFE491E65498700B8A3B3 /* LaunchScreen.storyboard */,
 				EB7FFE4C1E65498700B8A3B3 /* Info.plist */,
 			);
@@ -250,6 +253,7 @@
 				EB7FFE751E65876800B8A3B3 /* art.scnassets in Resources */,
 				EB7FFE481E65498700B8A3B3 /* Assets.xcassets in Resources */,
 				EB7FFE461E65498700B8A3B3 /* Main.storyboard in Resources */,
+				EB0593D11E67C0D00019B844 /* Fireball.scnp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +527,7 @@
 				EB7FFE671E65498700B8A3B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB7FFE681E65498700B8A3B3 /* Build configuration list for PBXNativeTarget "ARStepOneTests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +536,7 @@
 				EB7FFE6A1E65498700B8A3B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB7FFE6B1E65498700B8A3B3 /* Build configuration list for PBXNativeTarget "ARStepOneUITests" */ = {
 			isa = XCConfigurationList;
@@ -539,6 +545,7 @@
 				EB7FFE6D1E65498700B8A3B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

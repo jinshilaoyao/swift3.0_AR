@@ -55,7 +55,7 @@ class YYMapViewController: UIViewController {
         
         targets.removeAll()
         
-        let wolfLocation = CLLocation(latitude: self.userLocation!.coordinate.latitude + 0.00005, longitude: self.userLocation!.coordinate.longitude)
+        let wolfLocation = CLLocation(latitude: self.userLocation!.coordinate.latitude, longitude: self.userLocation!.coordinate.longitude + 0.0004)
         
         let wolf = YYARItem(itemDescription: "wolf", location: wolfLocation, itemNode: nil)
         targets.append(wolf)
@@ -99,8 +99,15 @@ extension YYMapViewController: MKMapViewDelegate {
                 
                 vc?.target = mapAnnotation?.item
                 vc?.userLocation = mapView.userLocation.location!
+                vc?.delegate = self
                 self.present(vc!, animated: true, completion: nil)
             }
         }
+    }
+}
+
+extension YYMapViewController: ARControllerDelegate {
+    func viewController(controller: ViewController, tappedTarget: YYARItem) {
+        
     }
 }

@@ -13,6 +13,10 @@ import CoreLocation
 
 let NotifyChatMsgRecv = NSNotification.Name(rawValue:"notifyChatMsgRecv")
 
+protocol ARControllerDelegate {
+    func viewController(controller: ViewController, tappedTarget: YYARItem)
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var sceneView: SCNView!
@@ -31,7 +35,9 @@ class ViewController: UIViewController {
     let scene = SCNScene()
     let cameraNode = SCNNode()
     let targetNode = SCNNode(geometry: SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0))
+    //3
     
+    var delegate: ARControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,22 +57,12 @@ class ViewController: UIViewController {
         cameraNode.position = SCNVector3(x: 0, y: 0, z: 10)
         scene.rootNode.addChildNode(cameraNode)
         setupTarget()
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(receiveUserLocation), name: NotifyChatMsgRecv, object: nil)
+
     }
     
     @IBAction func goBack() {
         dismiss(animated: true, completion: nil)
     }
-    
-//    func receiveUserLocation(notification: Notification) {
-//        guard let location = notification.object as? CLLocation else {
-//            return
-//        }
-//        
-//        self.userLocation = location
-//        
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -221,7 +217,41 @@ class ViewController: UIViewController {
         node.name = "enemy"
         self.target.itemNode = node
     }
-
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: sceneView)
+        let hitResult = sceneView.hitTest(location, options: nil)
+        let fireBall = SCNParticleSystem(named: "Fireball.scnp", inDirectory: nil)
+        
+        let emitterNode = SCNNode()
+        emitterNode.position = SCNVector3(x: 0, y: -5, z: 10)
+        emitterNode.addParticleSystem(fireBall!)
+        scene.rootNode.addChildNode(emitterNode)
+        
+        if hitResult.first != nil {
+            target.itemNode?.runAction(SCNAction.sequence([SCNAction.wait(duration: 0.5), SCNAction.removeFromParentNode(), SCNAction.hide()]))
+            let sequence = SCNAction.sequence(
+                [SCNAction.move(to: target.itemNode!.position, duration: 0.5),
+                 SCNAction.wait(duration: 3.5),
+                 SCNAction.run({_ in
+                    self.delegate?.viewController(controller: self, tappedTarget: self.target)
+                 })])
+            emitterNode.runAction(sequence)
+        } else {
+            
+            let Width = UIScreen.main.bounds.size.width
+            let Height = UIScreen.main.bounds.size.height
+            let WidthPer = Width * 0.05
+            let HeightPer = Height * 0.025
+            
+            let offsetX = Float((location.x - Width*0.5)/WidthPer)
+            let offsetY = Float((Height*0.5 - location.y)/HeightPer)
+            print("\(offsetX)--\(offsetY)")
+            emitterNode.runAction(SCNAction.move(to: SCNVector3(x: offsetX, y: offsetY, z: -30), duration: 0.5))
+        }
+    }
+    
 }
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
