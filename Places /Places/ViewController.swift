@@ -36,6 +36,8 @@ class ViewController: UIViewController {
   fileprivate var startedLoadingPOIs = false
   fileprivate var places = [Place]()
   
+  fileprivate var arViewController: ARViewController!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -59,8 +61,61 @@ class ViewController: UIViewController {
   }
   
   @IBAction func showARController(_ sender: Any) {
+    
+    arViewController = ARViewController()
+    //1
+    arViewController.dataSource = self
+    //2
+    arViewController.maxVisibleAnnotations = 30
+    arViewController.headingSmoothingFactor = 0.05
+    //3
+    arViewController.setAnnotations(places)
+    
+    self.present(arViewController, animated: true, completion: nil)
+    
   }
   
+}
+
+extension ViewController: AnnotationViewDelegate {
+  func didTouch(annotationView: AnnotationView) {
+//    print("Tapped view for POI: \(annotationView.titleLabel?.text)")
+    if let annotation = annotationView.annotation as? Place {
+      
+      let placesLoader = PlacesLoader()
+      placesLoader.loadDetailInformation(forPlace: annotation, handler: { (resultDict, error) in
+        if let infoDict = resultDict?.object(forKey: "result") as? NSDictionary
+        {
+          annotation.phoneNumber = infoDict.object(forKey: "formatted_phone_number") as? String
+          annotation.website = infoDict.object(forKey: "website") as? String
+          
+          //4
+          self.showInfoView(forPlace: annotation)
+        }
+      })
+    }
+  }
+  
+  func showInfoView(forPlace place: Place) {
+    //1
+    let alert = UIAlertController(title: place.placeName , message: place.infoText, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+    //2
+    arViewController.present(alert, animated: true, completion: nil)
+  }
+
+}
+
+extension ViewController: ARDataSource {
+  func ar(_ arViewController: ARViewController, viewForAnnotation: ARAnnotation) -> ARAnnotationView
+  {
+    let annotationView = AnnotationView()
+    annotationView.annotation = viewForAnnotation
+    annotationView.delegate = self
+    annotationView.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
+    
+    return annotationView
+  }
 }
 extension ViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -25,6 +25,7 @@
 		8F7404801DCF31B0009A6F0B /* PlacesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74047E1DCF31B0009A6F0B /* PlacesLoader.swift */; };
 		8F7404811DCF31B0009A6F0B /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74047F1DCF31B0009A6F0B /* Place.swift */; };
 		EB246A8C1E69040C00D616F7 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB246A8B1E69040C00D616F7 /* PlaceAnnotation.swift */; };
+		EB246A8E1E69462100D616F7 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB246A8D1E69462100D616F7 /* AnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		8F74047E1DCF31B0009A6F0B /* PlacesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesLoader.swift; sourceTree = "<group>"; };
 		8F74047F1DCF31B0009A6F0B /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		EB246A8B1E69040C00D616F7 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
+		EB246A8D1E69462100D616F7 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				8F74047E1DCF31B0009A6F0B /* PlacesLoader.swift */,
 				EB246A8B1E69040C00D616F7 /* PlaceAnnotation.swift */,
 				8F74047F1DCF31B0009A6F0B /* Place.swift */,
+				EB246A8D1E69462100D616F7 /* AnnotationView.swift */,
 				8F7404581DCDD5F5009A6F0B /* HDAugmentedReality */,
 				8F74044A1DCDD569009A6F0B /* Main.storyboard */,
 				8F74044D1DCDD569009A6F0B /* Assets.xcassets */,
@@ -169,7 +172,7 @@
 				TargetAttributes = {
 					8F7404421DCDD569009A6F0B = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = KL6NU6Q5M2;
+						DevelopmentTeam = 5P7GY8S5H9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F7404801DCF31B0009A6F0B /* PlacesLoader.swift in Sources */,
+				EB246A8E1E69462100D616F7 /* AnnotationView.swift in Sources */,
 				8F74046A1DCDD5F5009A6F0B /* ARViewController.swift in Sources */,
 				EB246A8C1E69040C00D616F7 /* PlaceAnnotation.swift in Sources */,
 				8F7404491DCDD569009A6F0B /* ViewController.swift in Sources */,
@@ -345,7 +349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KL6NU6Q5M2;
+				DEVELOPMENT_TEAM = 5P7GY8S5H9;
 				INFOPLIST_FILE = Places/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Places;
@@ -358,7 +362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KL6NU6Q5M2;
+				DEVELOPMENT_TEAM = 5P7GY8S5H9;
 				INFOPLIST_FILE = Places/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.Places;
