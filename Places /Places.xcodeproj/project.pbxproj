@@ -24,6 +24,7 @@
 		8F74046F1DCDD5F5009A6F0B /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7404651DCDD5F5009A6F0B /* hdar_close@3x.png */; };
 		8F7404801DCF31B0009A6F0B /* PlacesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74047E1DCF31B0009A6F0B /* PlacesLoader.swift */; };
 		8F7404811DCF31B0009A6F0B /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74047F1DCF31B0009A6F0B /* Place.swift */; };
+		EB246A8C1E69040C00D616F7 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB246A8B1E69040C00D616F7 /* PlaceAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8F7404651DCDD5F5009A6F0B /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
 		8F74047E1DCF31B0009A6F0B /* PlacesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesLoader.swift; sourceTree = "<group>"; };
 		8F74047F1DCF31B0009A6F0B /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		EB246A8B1E69040C00D616F7 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				8F7404461DCDD569009A6F0B /* AppDelegate.swift */,
 				8F7404481DCDD569009A6F0B /* ViewController.swift */,
 				8F74047E1DCF31B0009A6F0B /* PlacesLoader.swift */,
+				EB246A8B1E69040C00D616F7 /* PlaceAnnotation.swift */,
 				8F74047F1DCF31B0009A6F0B /* Place.swift */,
 				8F7404581DCDD5F5009A6F0B /* HDAugmentedReality */,
 				8F74044A1DCDD569009A6F0B /* Main.storyboard */,
@@ -213,6 +216,7 @@
 			files = (
 				8F7404801DCF31B0009A6F0B /* PlacesLoader.swift in Sources */,
 				8F74046A1DCDD5F5009A6F0B /* ARViewController.swift in Sources */,
+				EB246A8C1E69040C00D616F7 /* PlaceAnnotation.swift in Sources */,
 				8F7404491DCDD569009A6F0B /* ViewController.swift in Sources */,
 				8F7404661DCDD5F5009A6F0B /* ARAnnotation.swift in Sources */,
 				8F74046B1DCDD5F5009A6F0B /* DebugMapViewController.swift in Sources */,

@@ -29,6 +29,7 @@ class Place: ARAnnotation {
   let address: String
   var phoneNumber: String?
   var website: String?
+  var iconUrl: URL?
   
   var infoText: String {
     get {
@@ -45,14 +46,34 @@ class Place: ARAnnotation {
     }
   }
   
-  init(location: CLLocation, reference: String, name: String, address: String) {
+  init(dict: Dictionary<String, Any>) throws {
+    guard let geometry = dict["geometry"] as? Dictionary<String, Any>, let location = geometry["location"] as? Dictionary<String, Any>, let lat = location["lat"] as? Double, let lng = location["lng"] as? Double else {
+      throw SerializationError.missing("location")
+    }
+    
+    guard let name = dict["name"] as? String else {
+      throw SerializationError.missing("name")
+    }
+    
+    
+    guard let reference = dict["reference"] as? String else {
+      throw SerializationError.missing("reference")
+    }
+    
+    guard let vicinity = dict["vicinity"] as? String else {
+      throw SerializationError.missing("vicinity")
+    }
+    
+    guard let urlString = dict["icon"] as? String, let url = URL(string: urlString) else {
+      throw SerializationError.missing("IconUrl")
+    }
+    
     placeName = name
     self.reference = reference
-    self.address = address
-    
+    self.address = vicinity
+    self.iconUrl = url
     super.init()
-    
-    self.location = location
+    self.location = CLLocation(latitude: lat, longitude: lng)
   }
   
   override var description: String {

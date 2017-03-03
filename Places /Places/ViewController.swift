@@ -70,7 +70,7 @@ extension ViewController: CLLocationManagerDelegate {
       
       if Int(location.horizontalAccuracy) < 100 {
         manager.stopUpdatingLocation()
-        let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
+        let span = MKCoordinateSpan(latitudeDelta: 0.004, longitudeDelta: 0.004)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.region = region
         
@@ -84,9 +84,34 @@ extension ViewController: CLLocationManagerDelegate {
       startedLoadingPOIs = true
       
       let loader = PlacesLoader()
-      loader.loadPOIS(location: location, radius: 1000, handler: { (dict, error) in
-        print(dict)
+      loader.loadPOIS(location: location, radius: 500, handler: { (dict, error) in
+
+        if error != nil {
+          print(error ?? "unknow fail")
+          return
+        }
         
+        guard let placeArray = dict?.object(forKey: "results") as? Array<Dictionary<String, Any>> else {return}
+        
+        for placeDit in placeArray {
+          
+          do {
+            let place = try Place(dict: placeDit)
+            self.places.append(place)
+          } catch let error {
+            print(error)
+          }
+          
+          do {
+            let annotation = try PlaceAnnotation(dict: placeDit)
+            DispatchQueue.main.async {
+              self.mapView.addAnnotation(annotation)
+            }
+          } catch let error {
+            print(error)
+          }
+          
+        }
       })
     }
   }
